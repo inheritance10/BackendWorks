@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo_perf
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo/mongod.conf:/etc/mongod.conf
+    command: ["mongod", "--config", "/etc/mongod.conf"]
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2g
+
+volumes:
+  mongo_data:
