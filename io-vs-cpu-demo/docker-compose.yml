@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  gateway-node:
+    build: ./gateway-node
+    ports:
+      - "3000:3000"
+    depends_on:
+      - service-go
+      - worker-go
+  
+  service-go:
+    build: ./service-go
+    ports:
+      - "4000:4000"
+  worker-go:
+    build: ./worker-go
+    ports:
+      - "5000:5000"
